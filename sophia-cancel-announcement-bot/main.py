@@ -52,7 +52,7 @@ class ScrapeLoyola:
         self.iframe = self.driver.find_element_by_name('portlet-body')
         self.driver.switch_to.frame(self.iframe)
 
-    # 休講情報の検索
+    # 実行日の休講情報の検索
     def search_cancel_announcement(self):
         # '表示期間'のSelectボタンを指定された日に設定
         def set_date_of_select():
@@ -102,9 +102,9 @@ class ScrapeLoyola:
             return correct_str(text)
 
         def correct_str(_str):
-            ret_str = _str.replace(r'  ', r' ')
-            ret_str = re.sub(r'\u3000', r' ', ret_str)
-            ret_str = re.sub(r'　', r' ', ret_str)
+            ret_str = _str.replace('  ', ' ')
+            ret_str = re.sub('\u3000', ' ', ret_str)
+            ret_str = re.sub('　', ' ', ret_str)
             return ret_str
 
         element.click()
