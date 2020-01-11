@@ -123,9 +123,9 @@ class ScrapeLoyola:
 
         course_info['cancel_reason'] =\
             fetch_text_data(lower_xpath_base + 'tr[2]/td[2]')
-        course_info['cancel_period'] =\
+        course_info['period'] =\
             fetch_text_data(lower_xpath_base + 'tr[3]/td[2]')
-        course_info['course_instructor'] =\
+        course_info['instructor'] =\
             fetch_text_data(lower_xpath_base + 'tr[5]/td[2]')
 
         return course_info
