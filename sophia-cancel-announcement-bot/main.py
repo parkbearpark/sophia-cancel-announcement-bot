@@ -60,7 +60,7 @@ class ScrapeLoyola:
             todays_date_dict = {
                 'year': _today.year,
                 'month': _today.month,
-                'day': _today.day - 1
+                'day': _today.day
             }
 
             html_name_first_list = ['startDay_', 'endDay_']
