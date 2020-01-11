@@ -83,6 +83,7 @@ class ScrapeLoyola:
 
     # 休講情報のテーブルを作る
     def create_cancel_info_table(self):
+        self.search_cancel_announcement()
         cancel_element_list = self.driver.find_elements_by_xpath(
             "//*[@id='entryShowForm']/table[2]/tbody/tr[@class='kyuko-kyuko']/td[5]/a"
         )
