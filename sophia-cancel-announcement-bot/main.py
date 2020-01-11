@@ -12,6 +12,8 @@ from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 
+from twitter import ManageTwitter
+
 
 class ScrapeLoyola:
     def __init__(self):
@@ -125,6 +127,31 @@ class ScrapeLoyola:
             fetch_text_data(lower_xpath_base + 'tr[5]/td[2]')
 
         return course_info
+
+
+class MakeTweet:
+    def __init__(self, cancel_info_table):
+        self.cancel_info_table = cancel_info_table
+
+    def create_tweet_list(self):
+        tweet_list = [self.get_tweet_text(cancel_info)
+                      for cancel_info in self.cancel_info_table]
+        return tweet_list
+
+    def get_tweet_text(self, cancel_info):
+        period = cancel_info['period']
+        course_name = cancel_info['course_name']
+        instructor = cancel_info['instructor']
+        course_affiliation = cancel_info['course_affiliation']
+        cancel_reason = cancel_info['cancel_reason']
+        tweet =\
+            f'''{period}
+科目: {course_name}
+教員: {instructor}
+開講所属: {course_affiliation}
+理由: {cancel_reason}'''
+
+        return tweet
 
 
 def main():
