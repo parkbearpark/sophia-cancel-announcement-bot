@@ -94,6 +94,7 @@ class ScrapeLoyola:
             self.driver.switch_to.window(current_handle)
             self.driver.switch_to.frame(self.iframe)
 
+        self.driver.close()
         return cancel_info_table
 
     # 各講義の休講の詳細を取得
