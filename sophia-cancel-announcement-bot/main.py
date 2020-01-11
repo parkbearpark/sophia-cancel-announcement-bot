@@ -158,9 +158,15 @@ class MakeTweet:
 
 def main():
     scrape_loyola = ScrapeLoyola()
-    scrape_loyola.search_cancel_announcement()
-    info_table = scrape_loyola.create_cancel_info_table()
-    pprint.pprint(info_table)
+    cancel_info_table = scrape_loyola.create_cancel_info_table()
+
+    make_tweet = MakeTweet(cancel_info_table)
+    tweet_list = make_tweet.create_tweet_list()
+
+    manage_twitter = ManageTwitter()
+    for tweet in tweet_list:
+        manage_twitter.post_tweet(tweet)
+    # pprint.pprint(tweet_list)
 
 
 if __name__ == "__main__":
