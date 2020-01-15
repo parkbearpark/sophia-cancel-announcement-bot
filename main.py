@@ -27,14 +27,14 @@ class ScrapeLoyola:
         options.add_argument('--window-size=1200x600')
 
         # .envからユーザ名とパスワードを取得
-        dotenv_path = join(dirname(__file__), '../.env')
+        dotenv_path = join(dirname(__file__), '.env')
         dotenv.load_dotenv(dotenv_path)
         user_name = os.environ.get('USER_NAME')
         password = os.environ.get('PASSWORD')
 
         # 起動してログイン
         self.driver = webdriver.Chrome(
-            '../assets/chromedriver',
+            './assets/chromedriver',
             options=options
         )
         self.driver.implicitly_wait(15)
