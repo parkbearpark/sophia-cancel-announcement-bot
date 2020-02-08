@@ -1,5 +1,7 @@
-FROM joyzoursky/python-chromedriver:3.7-alpine3.8-selenium
+FROM joyzoursky/python-chromedriver:latest
 WORKDIR /usr/work/
 COPY ./*  /usr/work/
-RUN [ "pip", "install", ".""]
+RUN ["pip", "install", "--upgrade", "pip"]
+RUN ["pip", "install", "-r", "requirements.txt"]
+COPY  ./sophia-cancel-annoucement-bot /usr/work/
 CMD ["python", "__main__.py"]
