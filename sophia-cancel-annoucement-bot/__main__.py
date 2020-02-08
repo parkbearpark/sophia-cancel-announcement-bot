@@ -154,6 +154,7 @@ class MakeTweet:
 
 
 def main():
+    print('start')
     scrape_loyola = ScrapeLoyola()
     cancel_info_table = scrape_loyola.create_cancel_info_table()
 
@@ -163,7 +164,8 @@ def main():
     manage_twitter = ManageTwitter()
     for tweet in tweet_list:
         manage_twitter.post_tweet(tweet)
-    # pprint.pprint(tweet_list)
+    pprint.pprint(tweet_list)
+    print('finish')
 
 
 if __name__ == "__main__":
