@@ -72,7 +72,7 @@ class ScrapeLoyola:
 
         # '表示期間'を指定された日(現状実行した日のみ)にして、
         set_date_of_select()
-        time.sleep(3)
+        time.sleep(3)  # HACK: これ書かんと動かないことがあるけど他に方法ないんか
         # '履修中のみ'のチェックを外す
         self.driver.find_element_by_name('rishuchuFlg').click()
         # 検索
@@ -144,11 +144,11 @@ class MakeTweet:
         course_affiliation = cancel_info['course_affiliation']
         cancel_reason = cancel_info['cancel_reason']
         tweet =\
-            f'''{period}
-科目: {course_name}
-教員: {instructor}
-開講所属: {course_affiliation}
-理由: {cancel_reason}'''
+            (f'{period}\n'
+             f'科目: {course_name}\n'
+             f'教員: {instructor}\n'
+             f'開講所属: {course_affiliation}\n'
+             f'理由: {cancel_reason}')
 
         return tweet
 
