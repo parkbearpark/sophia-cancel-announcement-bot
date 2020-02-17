@@ -23,7 +23,7 @@ class ManageTwitter:
         param = {'status': tweet}
 
         try:
-            # request = self.twitter.post(url, params=param)
-            pass
+            request = self.twitter.post(url, params=param)
+            return True
         except:
-            print("Error: can't post")
+            return False
