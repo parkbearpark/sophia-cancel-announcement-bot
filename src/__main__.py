@@ -150,7 +150,8 @@ class MakeTweet:
 
 def main():
     logging.basicConfig(filename='./log/logger.log')
-    logging.info(datetime.time(), 'start')
+    log_fmt = '%(asctime)s  :%(message)s'
+    logging.info('start')
 
     scrape_loyola = ScrapeLoyola()
     cancel_info_table = scrape_loyola.create_cancel_info_table()
@@ -159,11 +160,11 @@ def main():
     tweet_list = make_tweet.create_tweet_list()
 
     manage_twitter = ManageTwitter()
-    for tweet in tweet_list:
-        manage_twitter.post_tweet(tweet)
+    for i, tweet in enumerate(tweet_list):
+        is_success = manage_twitter.post_tweet(tweet)
+        logging.info(f'{is_success} - {tweet}')
 
-    logging.info(pprint.pformat(tweet_list))
-    logging.info(datetime.time(), 'finish')
+    logging.info('finish')
 
 
 if __name__ == "__main__":
