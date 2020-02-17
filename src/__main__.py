@@ -1,4 +1,5 @@
 import datetime
+import logging
 import os
 from os.path import join, dirname
 import pprint
@@ -148,7 +149,9 @@ class MakeTweet:
 
 
 def main():
-    print('start')
+    logging.basicConfig(filename='./log/logger.log')
+    logging.info(datetime.time(), 'start')
+
     scrape_loyola = ScrapeLoyola()
     cancel_info_table = scrape_loyola.create_cancel_info_table()
 
@@ -158,8 +161,9 @@ def main():
     manage_twitter = ManageTwitter()
     for tweet in tweet_list:
         manage_twitter.post_tweet(tweet)
-    pprint.pprint(tweet_list)
-    print('finish')
+
+    logging.info(pprint.pformat(tweet_list))
+    logging.info(datetime.time(), 'finish')
 
 
 if __name__ == "__main__":
