@@ -101,9 +101,7 @@ class ScrapeLoyola:
             return correct_str(text)
 
         def correct_str(_str):
-            ret_str = _str.replace('  ', ' ')
-            ret_str = re.sub('\u3000', ' ', ret_str)
-            ret_str = re.sub('　', ' ', ret_str)
+            ret_str = re.sub('[\u3000  　]', ' ', ret_str)
             return ret_str
 
         element.click()
@@ -113,17 +111,13 @@ class ScrapeLoyola:
         upper_xpath_base = '/html/body/table[1]/tbody/'
         lower_xpath_base = '/html/body/table[2]/tbody/'
 
-        course_info['course_affiliation'] =\
-            fetch_text_data(upper_xpath_base + 'tr[1]/td')
-        course_info['course_name'] =\
-            fetch_text_data(upper_xpath_base + 'tr[2]/td[1]')
-
-        course_info['cancel_reason'] =\
-            fetch_text_data(lower_xpath_base + 'tr[2]/td[2]')
-        course_info['period'] =\
-            fetch_text_data(lower_xpath_base + 'tr[3]/td[2]')
-        course_info['instructor'] =\
-            fetch_text_data(lower_xpath_base + 'tr[5]/td[2]')
+        course_info = {
+            'course_affiliation': fetch_text_data(upper_xpath_base + 'tr[1]/td'),
+            'course_name': fetch_text_data(upper_xpath_base + 'tr[2]/td[1]'),
+            'cancel_reason': fetch_text_data(lower_xpath_base + 'tr[2]/td[2]'),
+            'period': fetch_text_data(lower_xpath_base + 'tr[3]/td[2]'),
+            'instructor': fetch_text_data(lower_xpath_base + 'tr[5]/td[2]')
+        }
 
         return course_info
 

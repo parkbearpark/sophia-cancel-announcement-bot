@@ -27,4 +27,3 @@ class ManageTwitter:
             pass
         except:
             print("Error: can't post")
-            print(request.text)
