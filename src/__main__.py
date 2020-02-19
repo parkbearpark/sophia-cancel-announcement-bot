@@ -34,7 +34,9 @@ class ScrapeLoyola:
         password = os.environ.get('PASSWORD')
 
         # 起動してログイン
-        self.driver = webdriver.Chrome(options=options)
+        self.driver = webdriver.Chrome(
+            '/usr/local/bin/chromedriver', options=options
+        )
         self.driver.implicitly_wait(15)
         self.driver.get(self.url_base)
         self.driver.find_element_by_name(
