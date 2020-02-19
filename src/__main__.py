@@ -49,6 +49,7 @@ class ScrapeLoyola:
         # iframe内にドライバを移す
         self.iframe = self.driver.find_element_by_name('portlet-body')
         self.driver.switch_to.frame(self.iframe)
+        time.sleep(5)  # ExplicitWaitにしてみる
 
     # 実行日の休講情報の検索
     def search_cancel_announcement(self):
@@ -73,7 +74,7 @@ class ScrapeLoyola:
 
         # '表示期間'を指定された日(現状実行した日のみ)にして、
         set_date_of_select()
-        time.sleep(3)  # HACK: これ書かんと動かないことがあるけど他に方法ないんか
+        time.sleep(3)  # HACK: これ書かんと動かないことがあるけど他に方法ないんか ExplicitWaitなら上手くいくかも
         # '履修中のみ'のチェックを外す
         self.driver.find_element_by_name('rishuchuFlg').click()
         # 検索
