@@ -28,15 +28,13 @@ class ScrapeLoyola:
         options.add_argument('--window-size=1200x600')
 
         # .envからユーザ名とパスワードを取得
-        dotenv_path = join(dirname(__file__), '.env')
+        dotenv_path = '../.env'
         dotenv.load_dotenv(dotenv_path)
         user_name = os.environ.get('USER_NAME')
         password = os.environ.get('PASSWORD')
 
         # 起動してログイン
-        self.driver = webdriver.Chrome(
-            '/usr/local/bin/chromedriver', options=options
-        )
+        self.driver = webdriver.Chrome(options=options)
         self.driver.implicitly_wait(15)
         self.driver.get(self.url_base)
         self.driver.find_element_by_name(
@@ -152,8 +150,12 @@ class MakeTweet:
 
 
 def main():
-    logging.basicConfig(filename='./log/logger.log')
     log_fmt = '%(asctime)s  :%(message)s'
+    logging.basicConfig(
+        filename='../log/logger.log',
+        format=log_fmt,
+        level=logging.INFO
+    )
     logging.info('start')
 
     scrape_loyola = ScrapeLoyola()
