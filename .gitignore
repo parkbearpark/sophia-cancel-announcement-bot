@@ -1,0 +1,5 @@
+.env
+/assets/
+__pycache__
+/src/log
+*.pem
